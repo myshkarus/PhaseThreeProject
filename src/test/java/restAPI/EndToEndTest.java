@@ -23,7 +23,7 @@ public class EndToEndTest {
 	@Test
 	public void test1() {
 
-		Response response = getAllEmployee();
+		Response response = getAllEmployees();
 		AssertJUnit.assertEquals(response.getStatusCode(), 200);
 
 		response = createEmployee("John", 8000);
@@ -47,12 +47,12 @@ public class EndToEndTest {
 		response = getSingleEmployee(id);
 		AssertJUnit.assertEquals(response.getStatusCode(), 404);
 
-		response = getAllEmployee();
+		response = getAllEmployees();
 		List<String> employees = response.jsonPath().get("id");
 		AssertJUnit.assertFalse(employees.contains(id));
 	}
 
-	public Response getAllEmployee() {
+	public Response getAllEmployees() {
 		Response response = this.request.get("employees");
 		return response;
 	}
